@@ -7,25 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".home">
 
+    <!-- Timer Display -->
     <TextView
         android:id="@+id/timerDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:00:00"
-        android:textSize="48sp"
+        android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/inputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        android:layout_marginTop="16dp" />
 
+    <!-- Input Layout -->
     <LinearLayout
         android:id="@+id/inputLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/timerDisplay"
-        app:layout_constraintBottom_toTopOf="@id/buttonLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp">
@@ -34,23 +34,25 @@
             android:id="@+id/inputHours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="HH"
+            android:hint="Hours"
             android:inputType="number" />
 
         <EditText
             android:id="@+id/inputMinutes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="MM"
+            android:hint="Minutes"
             android:inputType="number" />
 
         <EditText
             android:id="@+id/inputSeconds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="SS"
+            android:hint="Seconds"
             android:inputType="number" />
     </LinearLayout>
+
+    <!-- Existing views -->
 
     <LinearLayout
         android:id="@+id/buttonLayout"
@@ -87,15 +89,32 @@
                 android:text="Reset" />
         </LinearLayout>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/soundSettingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sound Settings"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/soundSettingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
-        android:text="Sound Settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLayout" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+
+            <Button
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

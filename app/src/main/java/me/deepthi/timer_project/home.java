@@ -1,11 +1,11 @@
 package me.deepthi.timer_project;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,12 +21,13 @@ public class home extends AppCompatActivity {
 
     private TextView timerDisplay;
     private EditText inputHours, inputMinutes, inputSeconds;
-    private Button startButton, pauseButton, resetButton, soundSettingsButton;
+    private Button startButton, pauseButton, resetButton, soundSettingsButton, saveButton, editButton;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
     private boolean timerRunning;
     private long initialTimeInMillis;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +47,18 @@ public class home extends AppCompatActivity {
         pauseButton = findViewById(R.id.pauseButton);
         resetButton = findViewById(R.id.resetButton);
         soundSettingsButton = findViewById(R.id.soundSettingsButton);
+        saveButton = findViewById(R.id.saveButton);
+        editButton = findViewById(R.id.editButton);
+
+        // Disable input fields by default
+        setInputFieldsEnabled(false);
 
         startButton.setOnClickListener(v -> startTimer());
         pauseButton.setOnClickListener(v -> pauseTimer());
         resetButton.setOnClickListener(v -> resetTimer());
         soundSettingsButton.setOnClickListener(v -> openSoundSettings());
+        saveButton.setOnClickListener(v -> saveTimerSettings());
+        editButton.setOnClickListener(v -> setInputFieldsEnabled(true));
     }
 
     private void startTimer() {
@@ -111,13 +119,6 @@ public class home extends AppCompatActivity {
         mediaPlayer.start();
     }
 
-
-    public void onFinish() {
-        timerRunning = false;
-        playNotification();
-        Toast.makeText(home.this, "Time's up!", Toast.LENGTH_SHORT).show();
-    }
-
     private int getInputValue(EditText input) {
         String inputText = input.getText().toString();
         return inputText.isEmpty() ? 0 : Integer.parseInt(inputText);
@@ -126,5 +127,17 @@ public class home extends AppCompatActivity {
     private void openSoundSettings() {
         Intent intent = new Intent(this, sound.class);
         startActivity(intent);
+    }
+
+    private void saveTimerSettings() {
+        // Implement save functionality
+        Toast.makeText(this, "Timer settings saved", Toast.LENGTH_SHORT).show();
+        setInputFieldsEnabled(false);
+    }
+
+    private void setInputFieldsEnabled(boolean enabled) {
+        inputHours.setEnabled(enabled);
+        inputMinutes.setEnabled(enabled);
+        inputSeconds.setEnabled(enabled);
     }
 }
