@@ -111,6 +111,13 @@ public class home extends AppCompatActivity {
         mediaPlayer.start();
     }
 
+
+    public void onFinish() {
+        timerRunning = false;
+        playNotification();
+        Toast.makeText(home.this, "Time's up!", Toast.LENGTH_SHORT).show();
+    }
+
     private int getInputValue(EditText input) {
         String inputText = input.getText().toString();
         return inputText.isEmpty() ? 0 : Integer.parseInt(inputText);
