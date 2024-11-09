@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Timer_Project"
         tools:targetApi="31">
         <activity
+            android:name=".history"
+            android:exported="false" />
+        <activity
             android:name=".sound"
             android:exported="false" />
         <activity

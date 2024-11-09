@@ -1,7 +1,10 @@
 package me.deepthi.timer_project;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -15,7 +18,9 @@ public class sound extends AppCompatActivity {
 
     private RadioGroup soundOptions;
     private SharedPreferences sharedPreferences;
+    private Button backButton;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,7 @@ public class sound extends AppCompatActivity {
         });
 
         soundOptions = findViewById(R.id.soundOptions);
+        backButton = findViewById(R.id.backButton);
         sharedPreferences = getSharedPreferences("TimerPreferences", MODE_PRIVATE);
 
         // Load saved sound option
@@ -50,6 +56,11 @@ public class sound extends AppCompatActivity {
                 selectedSound = R.raw.notification_sound3;
             }
             sharedPreferences.edit().putInt("selectedSound", selectedSound).apply();
+        });
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(sound.this, home.class);
+            startActivity(intent);
         });
     }
 }

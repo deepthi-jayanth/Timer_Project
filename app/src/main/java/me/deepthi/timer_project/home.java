@@ -1,5 +1,6 @@
 package me.deepthi.timer_project;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ public class home extends AppCompatActivity {
 
     private TextView timerDisplay;
     private EditText inputHours, inputMinutes, inputSeconds;
-    private Button startButton, pauseButton, resetButton;
+    private Button startButton, pauseButton, resetButton, soundSettingsButton;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
     private boolean timerRunning;
@@ -44,10 +45,12 @@ public class home extends AppCompatActivity {
         startButton = findViewById(R.id.startButton);
         pauseButton = findViewById(R.id.pauseButton);
         resetButton = findViewById(R.id.resetButton);
+        soundSettingsButton = findViewById(R.id.soundSettingsButton);
 
         startButton.setOnClickListener(v -> startTimer());
         pauseButton.setOnClickListener(v -> pauseTimer());
         resetButton.setOnClickListener(v -> resetTimer());
+        soundSettingsButton.setOnClickListener(v -> openSoundSettings());
     }
 
     private void startTimer() {
@@ -93,8 +96,6 @@ public class home extends AppCompatActivity {
         updateTimerDisplay();
     }
 
-
-
     private void updateTimerDisplay() {
         int hours = (int) (timeLeftInMillis / 1000) / 3600;
         int minutes = (int) ((timeLeftInMillis / 1000) % 3600) / 60;
@@ -113,5 +114,10 @@ public class home extends AppCompatActivity {
     private int getInputValue(EditText input) {
         String inputText = input.getText().toString();
         return inputText.isEmpty() ? 0 : Integer.parseInt(inputText);
+    }
+
+    private void openSoundSettings() {
+        Intent intent = new Intent(this, sound.class);
+        startActivity(intent);
     }
 }
